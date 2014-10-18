@@ -11,7 +11,7 @@ function img_create($filename, $mime_type)
 {  
   $content = file_get_contents($filename);
   $base64   = chunk_split(base64_encode($content)); 
-  return ($base64);
+  return ('data:image/' . $mime_type . ';base64,' . $base64);
     
 }
 
@@ -26,20 +26,16 @@ function my_the_content_filter( $content ) {
         $tags = $doc->getElementsByTagName('img');
         
 foreach ($tags as $tag) {
-       $src="prueba.jpg";
+     $src= img_create($tag->getAttribute('src'),'image/png');
      $tag->setAttribute( 'src' , $src );
 }   
 
     // Returns the content.
     return preg_replace('~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $doc->saveHTML());
 }
-//echo "<textarea cols='40'>".img_create('http://localhost/wordpress/wp-content/uploads/2014/10/PORTAFOLIO-3.jpg','image/png')."</textarea>";
+//echo "<textarea cols='40'>".."</textarea>";
     
 
 
 
 ?> 
-
-
-?>
-
