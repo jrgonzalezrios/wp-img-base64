@@ -1,0 +1,1 @@
+Plugin for WordPress, for loading images from any Post in base64.
